@@ -1,15 +1,21 @@
 {
-    "devCommand": "uvicorn app:app --host 0.0.0.0 --port 3000",
-    "builds": [
-        {
-            "src": "examples/app.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "examples/app.py"
-        }
-    ]
+  "devCommand": "uvicorn app:app --host 0.0.0.0 --port 3000",
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "@vercel/python",
+      "maxDuration": 60
+    }
+  },
+  "builds": [
+    {
+      "src": "examples/app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "examples/app.py"
+    }
+  ]
 }
